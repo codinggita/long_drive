@@ -1,11 +1,19 @@
-import express from "express";
+const express = require('express');
+const { connect } = require('mongoose');
+const connectDb = require('./database/conn');
 const app = express();
-const port = 3000;
 
 app.use(require('./router/auth'));
 
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+const PORT = 5000;
+
+connectDb().then(() => {
+
+
+  app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+  });
 });
+
