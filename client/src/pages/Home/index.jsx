@@ -1,8 +1,9 @@
 import "./home.css";
-import AboutSection from "../../components/aboutsection";
+import AboutSection from "../../components/aboutsection/About";
 import WhySection from "../../components/whysection";
-import Slide from "../../components/slide";
+import Slide from "../../components/slide/Slide";
 import styled from "styled-components";
+
 
 const HomePage = () => {
   return (
@@ -12,7 +13,7 @@ const HomePage = () => {
       </HomeIntro>
       <HomeSection>
         <div>
-          <h1> Book a City Taxi to your destination in town</h1>
+          <h1> Book a Car/Bike to your destination in town</h1>
           <p> Choose from a range of categories and prices</p>
         </div>
       </HomeSection>
