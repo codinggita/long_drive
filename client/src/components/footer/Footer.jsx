@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import LD from  "../../images/logo.png";
+import LD from  "../../assets/logo.png";
 
 
 const Footer = () => {
@@ -44,9 +44,10 @@ const Footer = () => {
 };
 
 const FooterContainer = styled.footer`
-  background-color: #1e272e; /* Dark color */
+  background-color: #482c50; /* Dark color */
   color: #bdc3c7; /* Light text color */
   padding: 20px 0;
+  width: 100%;
 `;
 
 const FooterContent = styled.div`
