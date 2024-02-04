@@ -3,11 +3,11 @@ import FormControl from '@mui/material/FormControl';
 import { useState } from 'react';
 import './home.css';
 import AboutSection from '../../components/aboutsection/About';
-import WhySection from '../../components/whysection/Why';
+import WhySection from '../../components/whysection/index.jsx';
 import Slide from '../../components/slide/Slide';
 import styled from 'styled-components';
 //import CarCard from "../../components/common/CommonCard"
-import CardDisplay from '../../components/common/CardDisplay.jsx';
+import CardDisplay from '../../components/common/RowCard.jsx';
 
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
@@ -77,7 +77,15 @@ const HomePage = () => {
 				</div>
 			</HomeSection>
 			<AboutSection />
-			<CardDisplay headline="Available Cars" cards={arr} />
+			<CardDisplay headline="Explore SuperCars" cards={arr} />
+			<CardDisplay headline="Explore SuperBikes" cards={arr} />
+			<CardDisplay headline="Budget Vehicles" cards={arr} />
+			<CardDisplay headline="Family Trip" cards={arr} />
+			<CardDisplay headline="Special Ones" cards={arr} />
+
+
+
+
 			<WhySection />
 
 			<Slide />
