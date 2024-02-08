@@ -1,13 +1,14 @@
 import LoginSignupPage from "../../components/auth/Auth";
-const AddCar = () => {
+//import addCarForm from "./addcarform";
+const login = () => {
   return (
     <div className="container">
       <div className="home-intro">
         <h2>Give your car on rent and earn money</h2>
       </div>
-      {/* <AddCarForm /> */}
-      <LoginSignupPage />
+      
+      <LoginSignupPage/>
     </div>
   );
 };
-export default AddCar;
+export default login;
