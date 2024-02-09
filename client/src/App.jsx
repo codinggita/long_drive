@@ -13,8 +13,10 @@ import BikeFactory from "./pages/bikeFactory/BikeFactory.jsx";
 import addCarForm from "./pages/addcar/addcarform.jsx";
 import Contact from  "./pages/contactUs/Contact.jsx";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import AddForm from "./pages/CarForm/AddForm.jsx";
-import Login from "./pages/addcar/index.jsx";
+import Login from "./pages/addcar/Authorization.jsx";
+import ViewCar from "./pages/ViewAddedCar/ViewAddedCar.jsx";
+import userContext from "./context/userContext.jsx";
+import { useState } from "react";
 
 
 const darkTheme = createTheme({
@@ -25,8 +27,10 @@ const darkTheme = createTheme({
 
 import { Fragment } from "react";
 function App() {
+  const user = useState(null);
   return (
     <ThemeProvider theme={darkTheme}>
+      <userContext.Provider value={user}>
       <Fragment>
         <Header />
 
@@ -37,15 +41,16 @@ function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/addcar" element={<AddCar />} /> 
                 <Route path="/cars" element={<CarFactory />} />
-                <Route path="/addform" element={<AddForm />} />  
                 <Route path="/bikes" element={<BikeFactory />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login/>} />
+                <Route path="/viewcar" element={<ViewCar />} />
             </Routes>
           </Router>
         </div>
         <Footer />
       </Fragment>
+      </userContext.Provider>
     </ThemeProvider>
   );
 }
