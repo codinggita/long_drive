@@ -4,56 +4,42 @@ const User = require("../models/User");
 // Register
 router.post("/register", async (req, res) => {
     try {
-        const newUser = new User({
-            username: req.body.username,
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        });
+        const { username, name, email, password } = req.body;
+
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
+        }
+
+        const newUser = new User({ username, name, email, password });
 
         const user = await newUser.save();
         res.status(200).json(user);
-    } catch (err) {
-        console.error(err);
+    } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Registration failed" });
     }
 });
 
-// Login
+// Login with username
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const { username, password } = req.body;
 
-        if (!user) {
-            res.status(400).json({ message: "Invalid email or password" });
-        } else {
-            if (user.password !== req.body.password) {
-                res.status(400).json({ message: "Invalid email or password" });
-            } else {
-                const { password, ...others } = user._doc;
-                res.status(200).json(others);
-            }
+        const user = await User.findOne({ username });
+
+        if (!user || user.password !== password) {
+            return res.status(400).json({ message: "Invalid username or password" });
         }
+
+        res.status(200).json({ message: "Login successful" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Login failed" });
     }
 });
 
-// Get user by user_id
-router.get("auth/:username", async (req, res) => {
-    try {
-        const user = await User.findOne({ username: req.params.username });
-        if (!user) {
-            res.status(404).json({ message: "User not found" });
-        } else {
-            const { password, ...others } = user._doc;
-            res.status(200).json(others);
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: "Failed to fetch user" });
-    }
-});
+
 
 module.exports = router;
